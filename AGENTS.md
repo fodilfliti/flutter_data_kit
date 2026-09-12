@@ -25,5 +25,5 @@ Pinned in `.fvmrc` to **3.35.7**. Use `fvm flutter` / `fvm dart`. Never run
 
 ## Out of scope unless asked
 
-Publishing, full firebase/drift adapters (stub READMEs only), flutter_input_kit,
-flutter_nav_kit, flutter_app_kit, migrating kiwash/lightnessword.
+Publishing, flutter_input_kit, flutter_nav_kit, flutter_app_kit,
+migrating kiwash/lightnessword.

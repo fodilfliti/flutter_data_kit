@@ -1,0 +1,38 @@
+name: flutter_data_kit_drift
+description: >
+  mapDrift() failure mapper, Drift-backed local sources, and a persistent
+  SyncQueue for flutter_data_kit.
+version: 0.0.1
+publish_to: none
+homepage: https://github.com/fodilfliti/flutter_data_kit
+repository: https://github.com/fodilfliti/flutter_data_kit
+issue_tracker: https://github.com/fodilfliti/flutter_data_kit/issues
+
+environment:
+  sdk: ^3.7.2
+  flutter: ">=3.29.0"
+
+resolution: workspace
+
+dependencies:
+  # FVM 3.35.7 = Dart 3.9.2. drift >=2.33 needs SDK >=3.10. drift_dev >=2.30
+  # needs analyzer >=8, which conflicts with flutter_test's test_api 0.7.6.
+  # drift_flutter 0.2.8 needs drift ^2.30 — so this adapter opens files via
+  # path_provider instead of drift_flutter.
+  drift: ">=2.26.0 <2.30.0"
+  flutter:
+    sdk: flutter
+  flutter_data_kit: ^0.0.1
+  lemsa_core_kit:
+    path: ../../../lemsa_core_kit
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  sqlite3: ^2.7.0
+  sqlite3_flutter_libs: ^0.5.32
+
+dev_dependencies:
+  build_runner: ">=2.4.13 <2.15.2"
+  drift_dev: ">=2.26.0 <2.30.0"
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^9.0.0

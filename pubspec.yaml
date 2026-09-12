@@ -17,6 +17,8 @@ workspace:
   - example
   - packages/flutter_data_kit_dio
   - packages/flutter_data_kit_supabase
+  - packages/flutter_data_kit_firebase
+  - packages/flutter_data_kit_drift
 
 dependencies:
   flutter:

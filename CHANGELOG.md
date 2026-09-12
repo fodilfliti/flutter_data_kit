@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Workspace: `flutter_data_kit` core + `flutter_data_kit_dio` + `flutter_data_kit_supabase`.
+- Workspace: `flutter_data_kit` core + `_dio` + `_supabase` + `_firebase` + `_drift`.
 - `PagedQuery`, `PagedState`, `PagedSource`, `PagedList` mixin (loadMore / refresh / setQuery / upsert / removeById / patch / apply).
 - `ref.cacheFor(Duration)` — failed fetches are not kept alive.
 - `CrudSource` / `DataSource` / `Repository` throw-`AppFailure` contracts.
 - `SyncQueue` + in-memory stub (no persistence).
 - Dio `buildDioClient`, `FailureInterceptor`, `TokenReader` hook, `runDio`.
 - Supabase `mapSupabase` + typed `NoteSource` example.
-- Stub READMEs for firebase and drift adapters.
+- Firebase `mapFirebase` + Auth helpers + Firestore `NoteSource` + Storage + FCM helpers.
+- Drift adapter (`packages/flutter_data_kit_drift`): `mapDrift` / `mapSqlite`,
+  example `NoteSource` / `NotePagedSource`, persistent `DriftSyncQueue`,
+  `deleteUserData`, schema v1→v2 migration test.

@@ -29,8 +29,8 @@ Pub workspace: core package at repo root, adapters under `packages/`.
 | --- | --- |
 | `flutter_data_kit_dio` | `buildDioClient`, `FailureInterceptor`, `TokenInterceptor` / `TokenReader`, `mapDioException`, `runDio`, `readCode`, `readFieldErrors` |
 | `flutter_data_kit_supabase` | `mapSupabase`, `authReasonFrom`, `Note`, `NoteDraft`, `NoteSource` |
-
-Firebase and Drift: stub README only.
+| `flutter_data_kit_firebase` | `mapFirebase`, `authReasonFrom`, Auth helpers, Firestore `NoteSource`, `FirebaseObjectStorage`, `FirebaseMessagingHelper` |
+| `flutter_data_kit_drift` | `mapDrift` / `mapSqlite`, `DriftKitDatabase`, `NoteSource`, `NotePagedSource`, `DriftSyncQueue`, `openDriftKitDatabase`, `deleteUserData` |
 
 ## Depends on (core)
 

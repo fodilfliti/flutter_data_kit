@@ -21,22 +21,19 @@ void main() {
 
   test('supabase pubspec does not depend on firebase', () {
     final file = _firstExisting([
-      'pubspec.yaml',
       'packages/flutter_data_kit_supabase/pubspec.yaml',
-    ]);
-    expect(file.readAsStringSync().contains('firebase'), isFalse);
-  });
-
-  test('workspace package graph does not include firebase', () {
-    final file = _firstExisting([
-      '.dart_tool/package_config.json',
-      '../../.dart_tool/package_config.json',
+      'pubspec.yaml',
     ]);
     final text = file.readAsStringSync();
-    expect(text.contains('firebase_core'), isFalse);
-    expect(text.contains('firebase_auth'), isFalse);
-    expect(text.contains('cloud_firestore'), isFalse);
+    expect(text.contains('name: flutter_data_kit_supabase'), isTrue);
+    expect(
+      RegExp(r'^\s+firebase', multiLine: true).hasMatch(text),
+      isFalse,
+    );
   });
+
+  // Workspace may resolve firebase via sibling flutter_data_kit_firebase.
+  // Apps that depend only on this package must never list that adapter.
 }
 
 File _firstExisting(List<String> paths) {

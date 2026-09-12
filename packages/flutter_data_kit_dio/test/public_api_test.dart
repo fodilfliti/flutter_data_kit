@@ -5,10 +5,15 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('dio pubspec has no firebase dependency', () {
     final file = _firstExisting([
-      'pubspec.yaml',
       'packages/flutter_data_kit_dio/pubspec.yaml',
+      'pubspec.yaml',
     ]);
-    expect(file.readAsStringSync().contains('firebase'), isFalse);
+    final text = file.readAsStringSync();
+    expect(text.contains('name: flutter_data_kit_dio'), isTrue);
+    expect(
+      RegExp(r'^\s+firebase', multiLine: true).hasMatch(text),
+      isFalse,
+    );
   });
 
   test('runDio and FailureInterceptor exist as public API', () {

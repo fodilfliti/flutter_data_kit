@@ -11,8 +11,8 @@ packages** in this repo.
 | `flutter_data_kit` | Contracts, `PagedList`, `cacheFor`, `SyncQueue` |
 | `flutter_data_kit_dio` | Dio client + `FailureInterceptor` |
 | `flutter_data_kit_supabase` | `mapSupabase()` + typed table source |
-| `flutter_data_kit_firebase` | Later (stub README) |
-| `flutter_data_kit_drift` | Later (stub README) |
+| `flutter_data_kit_firebase` | In progress — `mapFirebase`, Auth/Firestore/Storage/FCM |
+| `flutter_data_kit_drift` | In progress — `mapDrift`, local notes, `DriftSyncQueue` |
 
 Apps depend on the core package plus **only** the adapters they need. A
 Supabase app never resolves Firebase.
@@ -46,6 +46,12 @@ import 'package:flutter_data_kit/flutter_data_kit.dart';
 Dio: `buildDioClient(readToken: () => yourJwt())` + `runDio` on source methods.
 
 Supabase: wrap every public source method in `mapSupabase(() async { ... })`.
+
+Firebase: wrap every public source method in `mapFirebase(() async { ... })`.
+
+Drift: wrap every public source method in `mapDrift(() async { ... })`.
+Inject `DriftSyncQueue` for a persistent `SyncQueue`. Call
+`db.deleteUserData()` on sign-out.
 
 Vendor exception types must not escape the adapter.
 

@@ -1,6 +1,6 @@
 /// Offline enqueue used by controllers (e.g. save-while-offline).
 ///
-/// A Drift-backed implementation ships later in `flutter_data_kit_drift`.
+/// Persistent implementation: `DriftSyncQueue` in `flutter_data_kit_drift`.
 /// [InMemorySyncQueue] is a process-local stub: it does not persist.
 abstract interface class SyncQueue {
   /// Store [payload] for a later flush. Returns `false` if it cannot be queued.
@@ -18,7 +18,7 @@ abstract interface class SyncQueue {
 /// Process-local [SyncQueue]. Survives neither restart nor isolate death.
 ///
 /// `flush` does not send work anywhere — it only drops in-memory items.
-/// Replace with a Drift-backed queue before shipping offline-first.
+/// Inject `DriftSyncQueue` before shipping offline-first.
 class InMemorySyncQueue implements SyncQueue {
   final List<Object> _pending = [];
   final Set<String> _dirty = {};

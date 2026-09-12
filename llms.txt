@@ -1,6 +1,7 @@
 # flutter_data_kit
 
-Pub workspace: core contracts + Dio/Supabase adapters. Depends on lemsa_core_kit
-(AppFailure, Change). Core has no dio/supabase/firebase/drift. Adapters map
-vendor exceptions to AppFailure. PagedList mixin + ref.cacheFor (do not cache
-failed fetches). FVM 3.35.7.
+Pub workspace: core contracts + Dio/Supabase/Drift adapters. Depends on
+lemsa_core_kit (AppFailure, Change). Core has no dio/supabase/firebase/drift.
+Adapters map vendor exceptions to AppFailure. Drift owns mapDrift,
+DriftSyncQueue, deleteUserData. PagedList mixin + ref.cacheFor (do not cache
+failed fetches). FVM 3.35.7. Firebase adapter is still a stub.

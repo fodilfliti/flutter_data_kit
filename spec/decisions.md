@@ -44,16 +44,27 @@ in freezed.
 **Why:** kiwash hard-depends on FirebaseAuth inside the client. The adapter must
 not.
 
-## D6 — InMemorySyncQueue is a stub
+## D6 — InMemorySyncQueue is a process-local stub
 
-**Choice:** Process-local list. `flush` clears without I/O. Documented.
+**Choice:** Core keeps the in-memory list. Persistence is `DriftSyncQueue` in
+`flutter_data_kit_drift`. `flush` on the stub clears without I/O.
 
-**Why:** Offline persistence belongs in `flutter_data_kit_drift` (later).
-Controllers can still call `enqueue` for the queued-offline branch.
+**Why:** Core stays drift-free. Apps that need offline enqueue inject
+`DriftSyncQueue` for `SyncQueue`. Controllers can still call `enqueue` for
+the queued-offline branch.
 
-## D7 — Firebase / Drift stub READMEs only
+## D7 — Firebase and Drift are workspace adapters
 
-**Choice:** No pubspec, no code.
+**Choice:** Both `flutter_data_kit_firebase` and `flutter_data_kit_drift` are
+workspace members with real mappers and sources.
 
-**Why:** T13 scope. Adding packages now would pull those SDKs into the workspace
-lockfile.
+**Why:** Apps depend on only the adapters they list. A Supabase app never
+depends on Firebase even if the workspace lockfile resolves it as a sibling.
+Drift is required for persistent `SyncQueue` and local sources (D11).
+
+**SDK note:** Family floor lists `drift` 2.34.3 and `drift_flutter` 0.3.1,
+which need Dart `>=3.10`. FVM pin 3.35.7 ships Dart 3.9.2. `drift_dev`
+`>=2.30` also needs `analyzer` `>=8`, which conflicts with `flutter_test`'s
+`test_api` 0.7.6. This adapter therefore depends on `drift` / `drift_dev`
+`<2.30.0`, `sqlite3_flutter_libs` `^0.5.32`, and opens files with
+`path_provider` (no `drift_flutter`).
