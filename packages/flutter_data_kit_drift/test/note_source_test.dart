@@ -72,7 +72,7 @@ void main() {
     for (var i = 0; i < 3; i++) {
       await source.create(NoteDraft(id: 'p$i', title: 't$i'));
     }
-    final page = await paged.fetch(const PagedQuery(page: 1, pageSize: 2));
+    final page = await paged.fetch(const PagedQuery(pageSize: 2));
     expect(page.items.length, 2);
     expect(page.hasMore, isTrue);
 

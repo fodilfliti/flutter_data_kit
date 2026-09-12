@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 /// Opens the example kit database under the app documents directory.
 ///
 /// Apps typically wrap this in a keepAlive Riverpod provider and inject
-/// [DriftSyncQueue] / [NoteSource] from it. Tests should construct
+/// DriftSyncQueue / NoteSource from it. Tests should construct
 /// [DriftKitDatabase] with `NativeDatabase.memory()` instead.
 DriftKitDatabase openDriftKitDatabase({
   String name = 'flutter_data_kit.sqlite',

@@ -35,9 +35,10 @@ Future<T> mapDrift<T>(Future<T> Function() body) async {
     throw _mapWrapped(e, s);
   } on InvalidDataException catch (e) {
     throw ValidationFailure({'_': 'invalid'}, cause: e);
-  } on StateError catch (e, s) {
-    throw _mapStateError(e, s);
   } catch (e, s) {
+    if (e is StateError) {
+      throw _mapStateError(e, s);
+    }
     if (_isSqliteNamed(e)) {
       throw StorageFailure(cause: e, trace: s);
     }

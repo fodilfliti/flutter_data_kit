@@ -26,7 +26,7 @@ class Note implements Identifiable {
   int get hashCode => Object.hash(id, title, body);
 }
 
-/// Insert payload for [NoteSource.create].
+/// Insert payload for NoteSource.create.
 @immutable
 class NoteDraft {
   const NoteDraft({

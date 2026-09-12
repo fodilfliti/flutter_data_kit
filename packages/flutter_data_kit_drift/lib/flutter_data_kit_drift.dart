@@ -1,6 +1,6 @@
 /// Drift adapter for flutter_data_kit.
 ///
-/// [mapDrift] converts SQLite / Drift errors into AppFailure.
+/// mapDrift converts SQLite / Drift errors into AppFailure.
 /// Wrap every public source method.
 library;
 

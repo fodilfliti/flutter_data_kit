@@ -30,7 +30,8 @@ void main() {
         );
       ''')
       ..execute(
-        "INSERT INTO note_rows (id, title, updated_at) VALUES ('old', 'v1', 0);",
+        'INSERT INTO note_rows (id, title, updated_at) '
+        "VALUES ('old', 'v1', 0);",
       )
       ..execute('PRAGMA user_version = 1;')
       ..dispose();
