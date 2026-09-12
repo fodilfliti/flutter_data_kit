@@ -6,8 +6,7 @@ description: >
   FailureInterceptor/runDio, flutter_data_kit_supabase for mapSupabase, and
   flutter_data_kit_drift for mapDrift / DriftSyncQueue. Activate for
   pagination, list upsert after save, vendor error mapping, and offline
-  enqueue — not for form controllers, navigation, or the Firebase adapter
-  (not shipped).
+  enqueue — not for form controllers or navigation.
 license: MIT
 metadata:
   author: fodilfliti
@@ -23,6 +22,7 @@ metadata:
 import 'package:flutter_data_kit/flutter_data_kit.dart';
 import 'package:flutter_data_kit_dio/flutter_data_kit_dio.dart';
 import 'package:flutter_data_kit_supabase/flutter_data_kit_supabase.dart';
+import 'package:flutter_data_kit_firebase/flutter_data_kit_firebase.dart';
 import 'package:flutter_data_kit_drift/flutter_data_kit_drift.dart';
 ```
 
@@ -40,7 +40,8 @@ Depend on core plus **only** the adapters this app needs.
 - Call `ref.cacheFor(duration)` **after** a successful fetch so errors are not cached.
 - Wrap every Supabase source method in `mapSupabase`. Use `runDio` (and the
   Dio `FailureInterceptor`) on REST sources. Wrap every Drift source method
-  in `mapDrift`. Inject `DriftSyncQueue` for a persistent `SyncQueue`.
+  in `mapDrift`. Wrap every Firebase source method in `mapFirebase`. Inject
+  `DriftSyncQueue` for a persistent `SyncQueue`.
 - Token for Dio: pass `readToken: () => yourJwt()`. Do not import Firebase in
   the adapter.
 
@@ -73,5 +74,4 @@ class ItemList extends _$ItemList with PagedList<Item, ItemQuery> {
 | --- | --- |
 | AppFailure / Result / Change types | `lemsa_core_kit` |
 | Form controllers / busy / Notices | `flutter_page_kit` |
-| Firebase adapter | not shipped yet |
 | Persistent SyncQueue / local SQL | `flutter_data_kit_drift` (`DriftSyncQueue`, `mapDrift`) |
