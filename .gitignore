@@ -1,11 +1,33 @@
-﻿.DS_Store
-.idea/
+﻿# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
 *.iml
-.vscode/
+*.ipr
+*.iws
+.idea/
+
+.codebase-memory/
+
+# FVM (pin is .fvmrc; SDK symlink is local)
 .fvm/
+
+# Flutter/Dart/Pub related
+/pubspec.lock
+**/doc/api/
 .dart_tool/
-build/
 .flutter-plugins
 .flutter-plugins-dependencies
-/pubspec.lock
-.codebase-memory/
+build/
+
+# Editor
+.vscode/

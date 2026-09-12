@@ -1,0 +1,13 @@
+---
+description: Session rules for flutter_data_kit workspace
+alwaysApply: true
+---
+
+# flutter_data_kit
+
+- Core public API only via `lib/flutter_data_kit.dart`.
+- Core must not depend on dio, supabase_flutter, firebase_*, or drift.
+- Vendor exceptions stop at adapters; map to `AppFailure` (no message strings).
+- Repositories throw `AppFailure`; do not return `Either<String, T>`.
+- Use `fvm flutter` / `fvm dart` (pin 3.35.7). Never upgrade the shared SDK.
+- Do not build input_kit / nav_kit / app_kit unless asked.

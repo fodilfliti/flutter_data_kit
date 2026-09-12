@@ -1,0 +1,22 @@
+name: analyze
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.7'
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter test
+        working-directory: packages/flutter_data_kit_dio
+      - run: flutter test
+        working-directory: packages/flutter_data_kit_supabase

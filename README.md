@@ -1,14 +1,58 @@
 ﻿# flutter_data_kit
 
-Source contracts, PagedList, and cache policy for Lemsa Flutter apps.
+Backend contracts, pagination (`PagedList`), cache policy (`cacheFor`), and
+failure mapping for Lemsa Flutter apps. Vendor SDKs live in **adapter
+packages** in this repo.
 
-> **Status:** Planned / placeholder. Implementation not started.
-> Design: see [lemsa-skills](https://github.com/fodilfliti/lemsa-skills) `spec/kits/flutter_data_kit.md`.
+## Workspace
 
-## Depends on
+| Package | Role |
+| --- | --- |
+| `flutter_data_kit` | Contracts, `PagedList`, `cacheFor`, `SyncQueue` |
+| `flutter_data_kit_dio` | Dio client + `FailureInterceptor` |
+| `flutter_data_kit_supabase` | `mapSupabase()` + typed table source |
+| `flutter_data_kit_firebase` | Later (stub README) |
+| `flutter_data_kit_drift` | Later (stub README) |
 
-lemsa_core_kit
+Apps depend on the core package plus **only** the adapters they need. A
+Supabase app never resolves Firebase.
 
-## Local path
+## Install (path, unpublished)
 
-`C:\Users\lemsa\Documents\apps\lemsa_packages\flutter_data_kit\`
+```yaml
+dependencies:
+  flutter_data_kit:
+    path: ../flutter_data_kit
+  flutter_data_kit_dio:
+    path: ../flutter_data_kit/packages/flutter_data_kit_dio
+  lemsa_core_kit:
+    path: ../lemsa_core_kit
+```
+
+```dart
+import 'package:flutter_data_kit/flutter_data_kit.dart';
+```
+
+## Core
+
+- `PagedList<T,Q>` mixin on a Riverpod AsyncNotifier (`build() => fetchFirstPage()`)
+- `PagedSource.fetch` throws `AppFailure`
+- `ref.cacheFor(duration)` after a successful await
+- Repositories throw; controllers catch. `Result` only at branching sites
+  (`lemsa_core_kit`)
+
+## Adapters
+
+Dio: `buildDioClient(readToken: () => yourJwt())` + `runDio` on source methods.
+
+Supabase: wrap every public source method in `mapSupabase(() async { ... })`.
+
+Vendor exception types must not escape the adapter.
+
+## Example
+
+`example/` is a fake `PagedSource` + `PagedList` notifier. No backend required.
+
+## Agent skill
+
+Consumer agents: load `skills/flutter-data-kit/`.

@@ -1,0 +1,26 @@
+name: flutter_data_kit_example
+description: Fake PagedSource + PagedList notifier demo for flutter_data_kit.
+publish_to: none
+version: 0.0.1
+
+environment:
+  sdk: ^3.7.2
+  flutter: ">=3.29.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_data_kit: ^0.0.1
+  flutter_riverpod: ^3.3.2
+  lemsa_core_kit:
+    path: ../../lemsa_core_kit
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^9.0.0
+
+flutter:
+  uses-material-design: true

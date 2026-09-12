@@ -1,0 +1,12 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  errors:
+    empty_catches: error
+    unawaited_futures: error
+
+linter:
+  rules:
+    public_member_api_docs: false
+    cascade_invocations: false
+    one_member_abstracts: false
