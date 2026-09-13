@@ -4,6 +4,8 @@ analyzer:
   errors:
     empty_catches: error
     unawaited_futures: error
+  exclude:
+    - build/**
 
 linter:
   rules:

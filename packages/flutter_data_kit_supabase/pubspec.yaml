@@ -1,22 +1,22 @@
 name: flutter_data_kit_supabase
 description: >
   mapSupabase() failure mapper and typed table sources for flutter_data_kit.
-version: 0.0.1
+version: 1.0.0
 publish_to: none
 homepage: https://github.com/fodilfliti/flutter_data_kit
 repository: https://github.com/fodilfliti/flutter_data_kit
 issue_tracker: https://github.com/fodilfliti/flutter_data_kit/issues
 
 environment:
-  sdk: ^3.7.2
-  flutter: ">=3.29.0"
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
 
 resolution: workspace
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_data_kit: ^0.0.1
+  flutter_data_kit: ^1.0.0
   lemsa_core_kit:
     path: ../../../lemsa_core_kit
   supabase_flutter: ^2.17.2

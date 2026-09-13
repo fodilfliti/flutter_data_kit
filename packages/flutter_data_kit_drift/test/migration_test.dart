@@ -34,7 +34,7 @@ void main() {
         "VALUES ('old', 'v1', 0);",
       )
       ..execute('PRAGMA user_version = 1;')
-      ..dispose();
+      ..close();
 
     final db = DriftKitDatabase(NativeDatabase(file));
     addTearDown(db.close);

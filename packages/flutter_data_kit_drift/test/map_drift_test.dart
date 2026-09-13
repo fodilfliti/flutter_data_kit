@@ -4,12 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lemsa_core_kit/lemsa_core_kit.dart';
 import 'package:sqlite3/common.dart';
 
+SqliteException _sqlite(int code, String message) =>
+    SqliteException(extendedResultCode: code, message: message);
+
 void main() {
   group('mapDrift', () {
     test('unique constraint → ConflictFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(2067, 'UNIQUE'),
+          () async => throw _sqlite(2067, 'UNIQUE'),
         ),
         throwsA(
           isA<ConflictFailure>().having((f) => f.code, 'code', 'unique'),
@@ -20,7 +23,7 @@ void main() {
     test('primary key constraint → ConflictFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(1555, 'PRIMARY KEY'),
+          () async => throw _sqlite(1555, 'PRIMARY KEY'),
         ),
         throwsA(
           isA<ConflictFailure>().having((f) => f.code, 'code', 'unique'),
@@ -31,7 +34,7 @@ void main() {
     test('foreign key constraint → ConflictFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(787, 'FOREIGN KEY'),
+          () async => throw _sqlite(787, 'FOREIGN KEY'),
         ),
         throwsA(
           isA<ConflictFailure>().having(
@@ -46,7 +49,7 @@ void main() {
     test('NOT NULL constraint → ValidationFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(1299, 'NOT NULL'),
+          () async => throw _sqlite(1299, 'NOT NULL'),
         ),
         throwsA(
           isA<ValidationFailure>().having(
@@ -61,7 +64,7 @@ void main() {
     test('CHECK constraint → ValidationFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(275, 'CHECK'),
+          () async => throw _sqlite(275, 'CHECK'),
         ),
         throwsA(
           isA<ValidationFailure>().having(
@@ -76,7 +79,7 @@ void main() {
     test('SQLITE_NOTFOUND → NotFoundFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(12, 'not found'),
+          () async => throw _sqlite(12, 'not found'),
         ),
         throwsA(isA<NotFoundFailure>()),
       );
@@ -85,7 +88,7 @@ void main() {
     test('SQLITE_IOERR → StorageFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(10, 'io'),
+          () async => throw _sqlite(10, 'io'),
         ),
         throwsA(isA<StorageFailure>()),
       );
@@ -94,7 +97,7 @@ void main() {
     test('SQLITE_CORRUPT → StorageFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(11, 'corrupt'),
+          () async => throw _sqlite(11, 'corrupt'),
         ),
         throwsA(isA<StorageFailure>()),
       );
@@ -103,7 +106,7 @@ void main() {
     test('SQLITE_BUSY → StorageFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(5, 'busy'),
+          () async => throw _sqlite(5, 'busy'),
         ),
         throwsA(isA<StorageFailure>()),
       );
@@ -112,7 +115,7 @@ void main() {
     test('generic SQLITE_CONSTRAINT → ConflictFailure', () async {
       await expectLater(
         mapDrift(
-          () async => throw SqliteException(19, 'constraint'),
+          () async => throw _sqlite(19, 'constraint'),
         ),
         throwsA(isA<ConflictFailure>()),
       );
@@ -143,7 +146,7 @@ void main() {
     });
 
     test('CouldNotRollBackException unwraps SqliteException', () async {
-      final inner = SqliteException(10, 'io');
+      final inner = _sqlite(10, 'io');
       await expectLater(
         mapDrift(
           () async =>
@@ -174,7 +177,7 @@ void main() {
     test('mapSqlite is an alias of mapDrift', () async {
       await expectLater(
         mapSqlite(
-          () async => throw SqliteException(10, 'io'),
+          () async => throw _sqlite(10, 'io'),
         ),
         throwsA(isA<StorageFailure>()),
       );
