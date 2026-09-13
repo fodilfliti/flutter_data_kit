@@ -3,7 +3,6 @@ description: >
   mapFirebase() failure mapper and typed Auth / Firestore / Storage / FCM
   helpers for flutter_data_kit.
 version: 1.0.0
-publish_to: none
 homepage: https://github.com/fodilfliti/flutter_data_kit
 repository: https://github.com/fodilfliti/flutter_data_kit
 issue_tracker: https://github.com/fodilfliti/flutter_data_kit/issues
@@ -23,8 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_data_kit: ^1.0.0
-  lemsa_core_kit:
-    path: ../../../lemsa_core_kit
+  lemsa_core_kit: ^1.0.0
 
 dev_dependencies:
   flutter_test:

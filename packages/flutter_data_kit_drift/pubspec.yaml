@@ -3,7 +3,6 @@ description: >
   mapDrift() failure mapper, Drift-backed local sources, and a persistent
   SyncQueue for flutter_data_kit.
 version: 1.0.0
-publish_to: none
 homepage: https://github.com/fodilfliti/flutter_data_kit
 repository: https://github.com/fodilfliti/flutter_data_kit
 issue_tracker: https://github.com/fodilfliti/flutter_data_kit/issues
@@ -19,8 +18,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_data_kit: ^1.0.0
-  lemsa_core_kit:
-    path: ../../../lemsa_core_kit
+  lemsa_core_kit: ^1.0.0
   path: ^1.9.1
   path_provider: ^2.1.5
   sqlite3: ^3.4.0
