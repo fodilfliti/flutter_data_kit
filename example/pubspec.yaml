@@ -14,8 +14,7 @@ dependencies:
     sdk: flutter
   flutter_data_kit: ^1.0.0
   flutter_riverpod: ^3.4.2
-  lemsa_core_kit:
-    path: ../../lemsa_core_kit
+  lemsa_core_kit: ^1.0.0
 
 dev_dependencies:
   flutter_test:
